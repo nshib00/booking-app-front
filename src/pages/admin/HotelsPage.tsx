@@ -83,7 +83,7 @@ const HotelsPage = () => {
   return (
     <Box sx={{ display: 'flex' }}>
       <LeftPanel />
-      <Box sx={{ flexGrow: 1, pl: 8, m: 1 }}>
+      <Box sx={{ flexGrow: 1, pl: 8 }}>
         <Typography sx={{ mb: 3 }} variant="h4" gutterBottom>Управление отелями</Typography>
 
         {loading ? (
@@ -92,6 +92,8 @@ const HotelsPage = () => {
           <DataGrid
             rows={hotels}
             columns={columns}
+            paginationModel={{ pageSize: 10, page: 0 }}
+            pageSizeOptions={[10, 25, 50]}
           />
         )}
       </Box>

@@ -45,7 +45,7 @@ const AppRouter = (
       }
     />
     <Route
-      path="hotels/rooms/:hotelId"
+      path="admin/hotels/rooms/:hotelId"
       element={
         <ProtectedRoute requiredRole="admin">
           <RoomsPage />

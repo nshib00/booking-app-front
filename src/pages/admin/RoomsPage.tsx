@@ -72,7 +72,7 @@ const RoomsPage = () => {
   return (
     <Box sx={{ display: 'flex' }}>
       <LeftPanel />
-      <Box sx={{ flexGrow: 1, ml: `${drawerWidth}px`, mt: '64px', p: 2 }}>
+      <Box sx={{ flexGrow: 1, pl: 8 }}>
         <Typography variant="h4" gutterBottom>Управление номерами</Typography>
 
         {loading ? (
@@ -81,6 +81,8 @@ const RoomsPage = () => {
           <DataGrid
             rows={rooms}
             columns={columns}
+            paginationModel={{ pageSize: 10, page: 0 }}
+            pageSizeOptions={[10, 25, 50]}
           />
         )}
       </Box>
