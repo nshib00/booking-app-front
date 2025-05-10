@@ -55,7 +55,7 @@ const UsersPage = () => {
         <GridActionsCellItem
           icon={<EditIcon />}
           label="Редактировать"
-          onClick={() => navigate(`/admin/users/edit/${params.id}`)}
+          onClick={() => navigate(`/admin/users/${params.id}/edit`)}
         />,
         <GridActionsCellItem
           icon={<DeleteIcon />}

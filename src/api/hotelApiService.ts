@@ -30,7 +30,6 @@ class HotelApiService {
       formData.append('imageFile', hotel.imageFile);
     }
 
-    // Можно сериализовать rooms и services как JSON строки
     formData.append('rooms', JSON.stringify(hotel.rooms));
     formData.append('services', JSON.stringify(hotel.services));
 

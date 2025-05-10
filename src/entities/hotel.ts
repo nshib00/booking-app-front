@@ -1,19 +1,26 @@
 import { RoomService } from "./room";
 
-interface HotelBase {
-    name: string;
-    description: string;
-    city: string;
-    address: string;
-    starRating: number;
-    imageUrl: string;
-    services: HotelService[];
-}
 
+export interface HotelBase {
+  name: string;
+  description: string;
+  city: string;
+  address: string;
+  starRating: number;
+  imageUrl: string;
+  services: HotelService[];
+  rooms: Room[];
+  imageFile?: File;
+}
 
 export interface Hotel extends HotelBase {
-    id: number;
+  id: number;
+  minRoomPrice?: number;
 }
+
+export type NewHotel = HotelBase;
+
+export type HotelFormValues = HotelBase;
 
 export interface Room {
     type: string;
@@ -24,13 +31,6 @@ export interface Room {
 export interface Service {
     name: string;
     description: string;
-}
-
-
-export interface NewHotel extends HotelBase {
-    imageFile: File | null;
-    imagePreview: string;
-    rooms: Room[];
 }
 
 

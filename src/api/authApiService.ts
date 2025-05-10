@@ -35,22 +35,21 @@ class AuthApiService {
   }
 
   async login(data: LoginRequest): Promise<AuthResponse> {
-    const response = await api.post<AuthResponse>('/Account/login', data);
-    console.log('Login response data:', response.data); 
+    const response = await api.post<AuthResponse>('/account/login', data);
     const { token, email, userRole } = response.data;
     this.saveAuthData(token, userRole, email);
     return response.data;
   }
 
   async register(data: RegisterRequest): Promise<AuthResponse> {
-    const response = await api.post<AuthResponse>('/Account/register', data);
+    const response = await api.post<AuthResponse>('/account/register', data);
     const { token, email, userRole } = response.data;
     this.saveAuthData(token, userRole, email);
     return response.data;
   }
 
   async logout(): Promise<void> {
-    await api.post('/Account/logout');
+    await api.post('/account/logout');
     this.clearAuthData();
   }
 }

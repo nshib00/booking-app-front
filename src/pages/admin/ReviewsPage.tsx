@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Typography, Box, CircularProgress } from '@mui/material';
+import { Typography, Box, CircularProgress, Button, Stack } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import LeftPanel from '../../components/admin/LeftPanel';
 import { reviewApiService } from '../../api/reviewApiService';
 import { Review } from '../../entities/review';
+import { useNavigate } from 'react-router-dom';
+import AddIcon from '@mui/icons-material/Add';
 
 
 const ReviewsPage = () => {
+  const navigate = useNavigate();
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -36,8 +39,7 @@ const ReviewsPage = () => {
     <Box sx={{ display: 'flex' }}>
       <LeftPanel />
       <Box sx={{ flexGrow: 1, pl: 8 }}>
-        <Typography sx={{ mb: 3 }} variant="h4" gutterBottom>Управление отзывами</Typography>
-
+        <Typography sx={{ mb: 3 }} variant="h4" gutterBottom>Управление отзывами</Typography>  
         {loading ? (
           <CircularProgress />
         ) : (

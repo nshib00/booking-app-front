@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Typography, Box, CircularProgress } from '@mui/material';
+import { Typography, Box, CircularProgress, Button } from '@mui/material';
 import { DataGrid, GridColDef, GridActionsCellItem } from '@mui/x-data-grid';
 import LeftPanel from '../../components/admin/LeftPanel';
 import { roomApiService } from '../../api/roomApiService';
 import { Room } from '../../entities/room';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const drawerWidth = 240;
 
 const RoomsPage = () => {
   const navigate = useNavigate();
@@ -74,7 +74,13 @@ const RoomsPage = () => {
       <LeftPanel />
       <Box sx={{ flexGrow: 1, pl: 8 }}>
         <Typography variant="h4" gutterBottom>Управление номерами</Typography>
-
+        <Button
+            variant="contained"
+            startIcon={<AddIcon />}
+            onClick={() => navigate(`/admin/hotels/${hotelId}rooms/create`)}
+          >
+            Добавить номер отеля
+          </Button>
         {loading ? (
           <CircularProgress />
         ) : (

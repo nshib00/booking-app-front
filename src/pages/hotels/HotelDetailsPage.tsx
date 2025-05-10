@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Hotel } from '../../entities/hotel';
 import { hotelApiService } from '../../api/hotelApiService';
-import { Box, Typography, Card, CardMedia, CardContent, Button, Chip } from '@mui/material';
+import { Box, Typography, Card, CardMedia, CardContent, Button, Chip, Divider } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
+import BackButton from '../../components/common/BackButton';
 
 const HotelDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -40,46 +41,68 @@ const HotelDetailPage: React.FC = () => {
   if (error) return <Typography color="error">{error}</Typography>;
   if (!hotel) return <Typography>Отель не найден.</Typography>;
 
+  const placeholderUrl = 'https://placehold.co/800x300?text=Нет+изображения';
+
   return (
     <Card sx={{ maxWidth: 800, margin: '0 auto', mt: 4, p: 2 }}>
       <CardMedia
         component="img"
         height="300"
-        image={hotel.imageUrl}
+        image={hotel.imageUrl && hotel.imageUrl.trim() !== '' ? hotel.imageUrl : placeholderUrl}
         alt={hotel.name}
+        sx={{ borderRadius: 2 }}
       />
       <CardContent>
         <Typography variant="h4" gutterBottom>
           {hotel.name}
         </Typography>
-        {renderStars(hotel.starRating)}
+
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
+          {renderStars(hotel.starRating)}
+          {hotel.minRoomPrice !== undefined && (
+            <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>
+              от {hotel.minRoomPrice} ₽/ночь
+            </Typography>
+          )}
+        </Box>
+
         <Typography variant="subtitle1" color="text.secondary" gutterBottom>
           {hotel.city}, {hotel.address}
         </Typography>
-        <Typography variant="body1" sx={{ my: 2 }}>
+
+        <Divider sx={{ my: 2 }} />
+
+        <Typography variant="body1" sx={{ mb: 2 }}>
           {hotel.description}
         </Typography>
 
-        <Typography variant="h6" sx={{ mt: 3 }}>
+        <Divider sx={{ my: 2 }} />
+
+        <Typography variant="h6" sx={{ mb: 1 }}>
           Услуги отеля:
         </Typography>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 1 }}>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 2 }}>
           {hotel.services.length > 0 ? (
             hotel.services.map(service => (
-              <Chip key={service.id} label={`${service.name} (${!service.price ? 'включено' : service.price + '₽'})`} />
+              <Chip
+                key={service.id}
+                label={`${service.name} (${service.price === 0 ? 'включено' : service.price + '₽'})`}
+                color="primary"
+                variant="outlined"
+              />
             ))
           ) : (
             <Typography variant="body2">Нет информации об услугах.</Typography>
           )}
         </Box>
 
-        <Box sx={{ mt: 3 }}>
-          <Button variant="contained" component={Link} to="/booking">
-            Забронировать
+        <Divider sx={{ my: 2 }} />
+
+        <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
+          <Button variant="contained" component={Link} to={`/hotels/${hotel.id}/rooms`}>
+            Показать номера
           </Button>
-          <Button variant="outlined" component={Link} to="/" sx={{ ml: 2 }}>
-            Назад к списку
-          </Button>
+          <BackButton label="Назад к списку" url="/"/>
         </Box>
       </CardContent>
     </Card>

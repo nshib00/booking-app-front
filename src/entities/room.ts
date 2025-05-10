@@ -1,22 +1,25 @@
-interface RoomBase {
+export interface RoomBase {
+    hotelId: number;
     name: string;
     description: string;
     price: number;
     quantity: number;
     imageUrl: string;
-}
-
-export interface Room extends RoomBase {
+  }
+  
+  export interface NewRoom extends RoomBase {}
+  
+  export interface Room extends RoomBase {
     id: number;
-}
-
-export interface NewRoom extends RoomBase {
-    imageFile: File | null;
-}
-
-export interface RoomService {
+    imageFile?: File;
+  }
+  
+  export type RoomFormValues = RoomBase & { imageFile?: File };
+  
+  export interface RoomService {
     id: number;
     roomId: number;
     name: string;
-    price: number; // 0 → включено в стоимость
-}
+    price: number;
+  }
+  

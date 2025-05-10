@@ -1,5 +1,5 @@
 import { api } from './api';
-import { Booking } from '../entities/booking';
+import { Booking, BookingBase } from '../entities/booking';
 
 const bookingsUrl = '/bookings';
 
@@ -14,7 +14,7 @@ class BookingApiService {
     return response.data;
   }
 
-  async createBooking(booking: Booking): Promise<Booking> {
+  async createBooking(booking: BookingBase): Promise<Booking> {
     const response = await api.post<Booking>(bookingsUrl, booking);
     return response.data;
   }

@@ -5,8 +5,6 @@ import HotelCard from '../../components/hotels/HotelCard';
 import { Hotel } from '../../entities/hotel';
 import { hotelApiService } from '../../api/hotelApiService';
 import SearchBar from "../../components/common/SearchBar";
-import CustomButton from '../../components/common/CustomButton';
-import { Link } from 'react-router-dom';
 import { useAuth } from '../../shared/hooks/useAuth';
 
 const HotelListPage: React.FC = () => {
@@ -43,12 +41,6 @@ const HotelListPage: React.FC = () => {
       <Paper elevation={3} sx={{borderRadius: 2, p: 5, mb: 8 }}>
         <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
             <Typography variant="h4">Список отелей</Typography>
-
-            {role === 'admin' && (
-            <CustomButton component={Link} href="/admin/hotels" variant="contained" color="primary">
-                Добавить отель
-            </CustomButton>
-            )}
         </Box>
 
         <SearchBar
@@ -71,14 +63,16 @@ const HotelListPage: React.FC = () => {
         <Typography variant="body1">Отели не найдены.</Typography>
       )}
 
-      <Grid container spacing={2}>
+      <Grid container spacing={5}>
         {filteredHotels.map((hotel) => (
           <Grid key={hotel.id} size={{ xs: 12, sm: 6, md: 4 }}>
             <HotelCard
               id={hotel.id}
               name={hotel.name}
+              address={hotel.address}
               city={hotel.city}
               starRating={hotel.starRating}
+              minRoomPrice={hotel.minRoomPrice}
               imageUrl={hotel.imageUrl}
             />
           </Grid>

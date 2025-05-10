@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Typography, Box, CircularProgress } from '@mui/material';
+import { Typography, Box, CircularProgress, Button, Stack } from '@mui/material';
 import { DataGrid, GridColDef, GridActionsCellItem } from '@mui/x-data-grid';
 import LeftPanel from '../../components/admin/LeftPanel';
 import { hotelApiService } from '../../api/hotelApiService';
 import { Hotel } from '../../entities/hotel';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { useNavigate } from 'react-router-dom';
 
@@ -84,7 +85,16 @@ const HotelsPage = () => {
     <Box sx={{ display: 'flex' }}>
       <LeftPanel />
       <Box sx={{ flexGrow: 1, pl: 8 }}>
-        <Typography sx={{ mb: 3 }} variant="h4" gutterBottom>Управление отелями</Typography>
+        <Stack direction="row" justifyContent="space-between" alignItems="center" mb={2}>
+          <Typography variant="h4">Управление отелями</Typography>
+          <Button
+            variant="contained"
+            startIcon={<AddIcon />}
+            onClick={() => navigate('/admin/hotels/create')}
+          >
+            Добавить отель
+          </Button>
+        </Stack>
 
         {loading ? (
           <CircularProgress />
@@ -92,7 +102,10 @@ const HotelsPage = () => {
           <DataGrid
             rows={hotels}
             columns={columns}
-            paginationModel={{ pageSize: 10, page: 0 }}
+            getRowId={(row) => row.id}
+            initialState={{
+              pagination: { paginationModel: { pageSize: 10, page: 0 } },
+            }}
             pageSizeOptions={[10, 25, 50]}
           />
         )}
