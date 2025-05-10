@@ -1,17 +1,17 @@
 import { Box, Button, TextField } from '@mui/material';
 import { useState } from 'react';
-import { HotelFormValues } from '../../../entities/hotel';
+import { Hotel, NewHotel } from '../../../entities/hotel';
 
 interface HotelFormProps {
-  initialValues: HotelFormValues;
-  onSubmit: (values: HotelFormValues) => void;
+  initialValues: NewHotel | Hotel;
+  onSubmit: (values: NewHotel | Hotel) => void;
 }
 
 const HotelForm = ({ initialValues, onSubmit }: HotelFormProps) => {
-  const [form, setForm] = useState<HotelFormValues>(initialValues);
+  const [form, setForm] = useState(initialValues);
 
-  const handleChange = (field: keyof HotelFormValues, value: any) => {
-    setForm((prev) => ({ ...prev, [field]: value }));
+  const handleChange = (field: string, value: string | number) => {
+    setForm({ ...form, [field]: value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {

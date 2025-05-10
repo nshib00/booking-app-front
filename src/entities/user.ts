@@ -1,7 +1,7 @@
 import { Booking } from "./booking";
 
 export interface UserBase {
-    userName: string;
+    userName?: string;
     email: string;
     firstName: string;
     lastName: string;
