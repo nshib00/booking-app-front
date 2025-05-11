@@ -70,16 +70,7 @@ const UsersPage = () => {
     <Box sx={{ display: 'flex' }}>
       <LeftPanel />
       <Box sx={{ flexGrow: 1, pl: 8 }}>
-        <Stack direction="row" justifyContent="space-between" alignItems="center" mb={2}>
-          <Typography variant="h4">Управление пользователями</Typography>
-          <Button
-            variant="contained"
-            startIcon={<AddIcon />}
-            onClick={() => navigate('/admin/users/create')}
-          >
-            Добавить пользователя
-          </Button>
-        </Stack>
+        <Typography variant="h4" sx={{ mb: 2 }}>Управление пользователями</Typography>
 
         {loading ? (
           <CircularProgress />

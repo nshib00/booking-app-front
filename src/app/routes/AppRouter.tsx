@@ -14,7 +14,6 @@ import CreateHotelPage from '../../pages/admin/hotels/CreateHotelPage';
 import EditHotelPage from '../../pages/admin/hotels/EditHotelPage';
 import CreateRoomPage from '../../pages/admin/rooms/CreateRoomPage';
 import EditRoomPage from '../../pages/admin/rooms/EditRoomPage';
-import CreateUserPage from '../../pages/admin/users/CreateUserPage';
 import EditUserPage from '../../pages/admin/users/EditUserPage';
 import EditReviewPage from '../../pages/admin/reviews/EditReviewPage';
 
@@ -51,7 +50,6 @@ const AppRouter = (
       <Route path="rooms/:id/edit" element={<EditRoomPage />} />
 
       <Route path="users" element={<UsersPage />} />
-      <Route path="users/create" element={<CreateUserPage />} />
       <Route path="users/:id/edit" element={<EditUserPage />} />
 
       <Route path="reviews" element={<ReviewsPage />} />
