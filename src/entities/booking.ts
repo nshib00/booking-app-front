@@ -1,3 +1,4 @@
+import { Hotel } from './hotel';
 import { Room } from './room';
 
 export interface BookingBase {
@@ -5,6 +6,7 @@ export interface BookingBase {
   dateFrom: string;
   dateTo: string;
   room?: Room;
+  hotel?: Hotel;
 }
 
 export interface Booking extends BookingBase {

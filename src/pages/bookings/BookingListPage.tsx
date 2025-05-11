@@ -41,7 +41,7 @@ const BookingListPage: React.FC = () => {
 
   return (
     <Container sx={{ py: 4 }}>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" sx={{ pb: 2 }} gutterBottom>
         Мои бронирования
       </Typography>
       {!bookings.length ? (
@@ -63,17 +63,17 @@ const BookingListPage: React.FC = () => {
                     alt={`Изображение комнаты ${booking.room.name}`}
                     sx={{ borderRadius: 1, mb: 2 }}
                   />
-                )}
+                )}    
 
-                <Typography variant="subtitle1"><strong>Тип номера:</strong> {booking.room.name}</Typography>
-                <Typography variant="body2" sx={{ mb: 1 }}>{booking.room.description}</Typography>
-
-                {booking.room.hotel && (
+                {booking.hotel && (
                   <Box sx={{ mb: 1 }}>
-                    <Typography variant="subtitle2"><strong>Отель:</strong> {booking.room.hotel.name}</Typography>
-                    <Typography variant="body2">{booking.room.hotel.city}, {booking.room.hotel.address}</Typography>
+                    <Typography variant="subtitle1"><strong>Отель:</strong> {booking.hotel.name}</Typography>
+                    <Typography variant="body1">{booking.hotel.city}, {booking.hotel.address}</Typography>
                   </Box>
                 )}
+
+                <Typography variant="subtitle2"><strong>Тип номера:</strong> {booking.room.name}</Typography>
+
 
                 <Divider sx={{ my: 1 }} />
 
