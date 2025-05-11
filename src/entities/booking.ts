@@ -9,5 +9,7 @@ export interface BookingBase {
 
 export interface Booking extends BookingBase {
     id: number;
+    totalDays: number;
+    totalCost: number;
 }
 
