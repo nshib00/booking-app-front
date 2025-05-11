@@ -7,8 +7,8 @@ const hotelsUrl = '/hotels';
 
 
 class HotelApiService {
-  async getHotels(params?: { location?: string; checkIn?: string; checkOut?: string }): Promise<Hotel[]> {
-    const response = await api.get<Hotel[]>(hotelsUrl, { params });
+  async getHotels(params?: { location?: string; checkIn?: string; checkOut?: string; page?: number; pageSize?: number }): Promise<{ items: Hotel[]; totalCount: number }> {
+    const response = await api.get<{ items: Hotel[]; totalCount: number }>(hotelsUrl, { params });
     return response.data;
   }
 
