@@ -24,7 +24,7 @@ const EditHotelPage = () => {
 
   if (!hotel) return <div>Загрузка...</div>;
 
-  const { id: _, ...initialValues } = hotel;
+  const { id: _, minRoomPrice: __, ...initialValues } = hotel;
 
   return <HotelForm initialValues={initialValues} onSubmit={handleSubmit} />;
 };

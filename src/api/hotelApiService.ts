@@ -18,29 +18,23 @@ class HotelApiService {
   }
 
   async createHotel(hotel: NewHotel): Promise<Hotel> {
-    const formData = new FormData();
-    formData.append('name', hotel.name);
-    formData.append('description', hotel.description);
-    formData.append('city', hotel.city);
-    formData.append('address', hotel.address);
-    formData.append('starRating', hotel.starRating.toString());
-    formData.append('imageUrl', hotel.imageUrl);
-    
-    if (hotel.imageFile) {
-      formData.append('imageFile', hotel.imageFile);
-    }
+    const hotelPayload = {
+      ...hotel,
+      rooms: hotel.rooms ?? [],
+      services: hotel.services ?? [],
+    };
 
-    formData.append('rooms', JSON.stringify(hotel.rooms));
-    formData.append('services', JSON.stringify(hotel.services));
-
-    const response = await api.post<Hotel>(hotelsUrl, formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
+    const response = await api.post<Hotel>(hotelsUrl, hotelPayload, {
+      headers: { 'Content-Type': 'application/json' },
     });
     return response.data;
   }
 
   async updateHotel(id: number, hotel: Partial<NewHotel>): Promise<Hotel> {
-    const response = await api.put<Hotel>(`/${hotelsUrl}/${id}`, hotel);
+    const hotelWithId = { ...hotel, id };
+    const response = await api.put<Hotel>(`${hotelsUrl}/${id}`, hotelWithId, {
+      headers: { 'Content-Type': 'application/json' },
+    });
     return response.data;
   }
 

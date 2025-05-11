@@ -10,7 +10,6 @@ export interface HotelBase {
   imageUrl: string;
   services: HotelService[];
   rooms: Room[];
-  imageFile?: File;
 }
 
 export interface Hotel extends HotelBase {

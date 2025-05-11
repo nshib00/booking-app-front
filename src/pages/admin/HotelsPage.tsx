@@ -70,7 +70,7 @@ const HotelsPage = () => {
         <GridActionsCellItem
           icon={<EditIcon />}
           label="Редактировать"
-          onClick={() => navigate(`/admin/hotels/edit/${params.id}`)}
+          onClick={() => navigate(`/admin/hotels/${params.id}/edit`)}
         />,
         <GridActionsCellItem
           icon={<DeleteIcon />}
